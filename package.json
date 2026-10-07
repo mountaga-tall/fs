@@ -1,0 +1,9 @@
+{
+  "name": "fs-studio-site",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "npx serve .",
+    "build": "echo 'Static site — no build required'"
+  }
+}
