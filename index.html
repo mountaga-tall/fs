@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="F&S USA Bazar Corner — vente de marchandises diverses à Abidjan, Cocody-Angré Djibi. Commande rapide par WhatsApp." />
+  <title>F&S USA Bazar Corner | Abidjan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="top-strip">
+    <span>🇺🇸 Import USA</span>
+    <span>Prix attractifs</span>
+    <span>Arrivages réguliers</span>
+    <span>🚚 Livraison à Abidjan</span>
+  </div>
+
+  <header class="site-header">
+    <a class="brand" href="#accueil" aria-label="F&S USA Bazar Corner">
+      <span class="brand-mark">F&amp;S</span>
+      <span>
+        <strong>USA BAZAR</strong>
+        <small>CORNER</small>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="#boutique">Boutique</a>
+      <a href="#categories">Catégories</a>
+      <a href="#infos">Infos pratiques</a>
+    </nav>
+
+    <a class="header-wa" href="https://wa.me/2250720602951?text=Bonjour%20F%26S%20USA%20Bazar%20Corner%2C%20je%20souhaite%20passer%20une%20commande." target="_blank" rel="noopener">WhatsApp</a>
+  </header>
+
+  <main>
+    <section id="accueil" class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow">Vente de marchandises diverses</div>
+        <h1>Des bons plans <em>import USA</em>, près de chez vous.</h1>
+        <p>Vêtements, chaussures, meubles, électroménager, boissons et produits du quotidien. Découvrez les arrivages et commandez directement depuis Abidjan.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#boutique">Voir la boutique</a>
+          <a class="btn btn-ghost" href="https://wa.me/2250720602951?text=Bonjour%20F%26S%20USA%20Bazar%20Corner%2C%20je%20veux%20voir%20vos%20arrivages." target="_blank" rel="noopener">Voir les arrivages ↗</a>
+        </div>
+        <div class="hero-note">
+          <span class="pulse"></span>
+          Ouvert 7j/7 · 08h00–20h00
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="flag-orb">🇺🇸</div>
+        <div class="hero-card-title">F&amp;S<br/><span>USA Bazar</span></div>
+        <div class="hero-card-line"></div>
+        <p>La sélection qui mélange style, maison et bonnes affaires.</p>
+        <div class="mini-tags"><span>NEW IN</span><span>BEST PRICE</span><span>ABIDJAN</span></div>
+      </div>
+    </section>
+
+    <section class="trust-grid" aria-label="Points forts">
+      <div><span>01</span><strong>Import USA</strong><p>Une sélection orientée qualité et bonnes affaires.</p></div>
+      <div><span>02</span><strong>Livraison Abidjan</strong><p>Commandez à distance et échangez avec l’équipe.</p></div>
+      <div><span>03</span><strong>WhatsApp direct</strong><p>Une question, une photo, une commande : échange rapide.</p></div>
+    </section>
+
+    <section id="categories" class="section">
+      <div class="section-head">
+        <div>
+          <span class="kicker">La sélection F&amp;S</span>
+          <h2>Choisissez votre univers</h2>
+        </div>
+        <p>Une boutique multi-catégories pensée pour trouver facilement ce dont vous avez besoin.</p>
+      </div>
+      <div class="category-grid">
+        <button class="category-card c-red" data-filter="Vêtements"><span class="cat-icon">👕</span><strong>Vêtements</strong><small>Looks & essentiels</small></button>
+        <button class="category-card c-blue" data-filter="Chaussures"><span class="cat-icon">👟</span><strong>Chaussures</strong><small>Sport & lifestyle</small></button>
+        <button class="category-card c-gold" data-filter="Meubles"><span class="cat-icon">🛋️</span><strong>Meubles</strong><small>Maison & confort</small></button>
+        <button class="category-card c-green" data-filter="Électroménager"><span class="cat-icon">🧺</span><strong>Électroménager</strong><small>Pratique au quotidien</small></button>
+        <button class="category-card c-purple" data-filter="Boissons"><span class="cat-icon">🥤</span><strong>Boissons</strong><small>Rafraîchissements</small></button>
+        <button class="category-card c-orange" data-filter="Produits divers"><span class="cat-icon">📦</span><strong>Produits divers</strong><small>Bonnes trouvailles</small></button>
+      </div>
+    </section>
+
+    <section id="boutique" class="section shop-section">
+      <div class="section-head">
+        <div>
+          <span class="kicker">Boutique en ligne</span>
+          <h2>Les incontournables</h2>
+        </div>
+        <div class="shop-tools">
+          <button class="filter-btn active" data-filter="Tous">Tous</button>
+          <button class="filter-btn" data-filter="Vêtements">Vêtements</button>
+          <button class="filter-btn" data-filter="Chaussures">Chaussures</button>
+          <button class="filter-btn" data-filter="Maison">Maison</button>
+          <button class="filter-btn" data-filter="Divers">Divers</button>
+        </div>
+      </div>
+
+      <div class="product-grid" id="productGrid">
+        <article class="product-card" data-category="Vêtements">
+          <div class="product-visual visual-hoodie"><span>NEW</span><i>🧥</i></div>
+          <div class="product-body"><small>Vêtements</small><h3>Hoodies & sweats</h3><p>Pièces casual pour tous les jours.</p><strong class="price">À partir de 12 000 FCFA</strong><a class="product-cta" href="https://wa.me/2250720602951?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9(e)%20par%20les%20hoodies%20et%20sweats." target="_blank" rel="noopener">Commander</a></div>
+        </article>
+        <article class="product-card" data-category="Chaussures">
+          <div class="product-visual visual-sneaker"><span>BEST</span><i>👟</i></div>
+          <div class="product-body"><small>Chaussures</small><h3> Sneakers lifestyle</h3><p>Des modèles sport, ville et décontractés.</p><strong class="price">À partir de 18 000 FCFA</strong><a class="product-cta" href="https://wa.me/2250720602951?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9(e)%20par%20les%20sneakers." target="_blank" rel="noopener">Commander</a></div>
+        </article>
+        <article class="product-card" data-category="Maison">
+          <div class="product-visual visual-sofa"><span>HOME</span><i>🛋️</i></div>
+          <div class="product-body"><small>Meubles</small><h3>Salon & déco</h3><p>Canapés, tables et pièces pour la maison.</p><strong class="price">Sur arrivage</strong><a class="product-cta" href="https://wa.me/2250720602951?text=Bonjour%2C%20je%20cherche%20des%20meubles%20et%20articles%20de%20maison." target="_blank" rel="noopener">Demander</a></div>
+        </article>
+        <article class="product-card" data-category="Maison">
+          <div class="product-visual visual-appliance"><span>HOME</span><i>🧊</i></div>
+          <div class="product-body"><small>Électroménager</small><h3>Appareils maison</h3><p>Petits et grands équipements selon les arrivages.</p><strong class="price">Sur arrivage</strong><a class="product-cta" href="https://wa.me/2250720602951?text=Bonjour%2C%20je%20cherche%20de%20l%27%C3%A9lectrom%C3%A9nager." target="_blank" rel="noopener">Demander</a></div>
+        </article>
+        <article class="product-card" data-category="Divers">
+          <div class="product-visual visual-boxes"><span>NEW</span><i>📦</i></div>
+          <div class="product-body"><small>Produits divers</small><h3>Arrivages & bonnes trouvailles</h3><p>Accessoires, rangement, utilitaire et bien plus.</p><strong class="price">Selon arrivage</strong><a class="product-cta" href="https://wa.me/2250720602951?text=Bonjour%2C%20quels%20sont%20vos%20derniers%20arrivages%20%3F" target="_blank" rel="noopener">Voir les arrivages</a></div>
+        </article>
+        <article class="product-card" data-category="Divers">
+          <div class="product-visual visual-drink"><span>FRESH</span><i>🥤</i></div>
+          <div class="product-body"><small>Boissons</small><h3>Boissons & rafraîchissements</h3><p>Pour la maison, le bureau et les événements.</p><strong class="price">Sur arrivage</strong><a class="product-cta" href="https://wa.me/2250720602951?text=Bonjour%2C%20je%20souhaite%20voir%20les%20boissons%20disponibles." target="_blank" rel="noopener">Voir stock</a></div>
+        </article>
+      </div>
+      <div class="empty-state" id="emptyState">Aucun article dans cette sélection.</div>
+    </section>
+
+    <section class="cta-band">
+      <div>
+        <span class="kicker">Commandez maintenant</span>
+        <h2>Un produit vous intéresse ? Écrivez-nous.</h2>
+        <p>Envoyez le nom de l’article ou une capture d’écran. L’équipe vous répond sur WhatsApp.</p>
+      </div>
+      <a class="btn btn-light" href="https://wa.me/2250720602951?text=Bonjour%20F%26S%20USA%20Bazar%20Corner%2C%20je%20souhaite%20passer%20une%20commande." target="_blank" rel="noopener">07 20 60 29 51 · WhatsApp ↗</a>
+    </section>
+
+    <section id="infos" class="section info-section">
+      <div class="info-card location">
+        <span class="kicker">Nous trouver</span>
+        <h2>Abidjan · Cocody-Angré Djibi</h2>
+        <p>Rue L160</p>
+        <a class="text-link" href="https://www.google.com/maps/search/?api=1&query=Rue%20L160%2C%20Cocody-Angre%20Djibi%2C%20Abidjan" target="_blank" rel="noopener">Ouvrir dans Maps ↗</a>
+      </div>
+      <div class="info-card hours">
+        <span class="kicker">Horaires</span>
+        <h2>7 jours sur 7</h2>
+        <p>08h00 — 20h00</p>
+        <div class="hours-chip">● Ouvert tous les jours</div>
+      </div>
+      <div class="info-card social">
+        <span class="kicker">Réseaux</span>
+        <h2>@fsusabazarcorner</h2>
+        <p>Suivez les arrivages et nouveautés.</p>
+        <div class="social-row"><span>f</span><span>◎</span><span>♪</span></div>
+      </div>
+    </section>
+  </main>
+
+  <a class="floating-wa" href="https://wa.me/2250720602951?text=Bonjour%20F%26S%20USA%20Bazar%20Corner%20!" target="_blank" rel="noopener" aria-label="Contacter F&S sur WhatsApp">☏<span>WhatsApp</span></a>
+
+  <footer class="site-footer">
+    <div>F&amp;S USA Bazar Corner</div>
+    <div>Vente de marchandises diverses · Abidjan, Côte d’Ivoire</div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
