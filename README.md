@@ -19,9 +19,9 @@ Site vitrine e-commerce statique, mobile-first, pour F&S USA Bazar Corner à Abi
 - Sitemap et robots.txt
 - PWA installable avec manifest et Service Worker
 - Cache offline des pages et assets déjà visités
-- CNAME configuré pour `jusabazar.ci`
+- CNAME configuré pour `juzabazar.ci`
 
 ## Déploiement
 Le projet ne nécessite pas de build. Publier le contenu du dossier `fs-main/` sur GitHub Pages, Cloudflare Pages ou un hébergement statique équivalent.
 
-Le fichier `CNAME` définit le domaine personnalisé : `jusabazar.ci`.
+Le fichier `CNAME` définit le domaine personnalisé : `juzabazar.ci`.
