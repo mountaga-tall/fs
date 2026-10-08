@@ -22,6 +22,6 @@ Site vitrine e-commerce statique, mobile-first, pour F&S USA Bazar Corner à Abi
 - CNAME configuré pour `usabazar.ci`
 
 ## Déploiement
-Le projet ne nécessite pas de build. Publier le contenu du dossier `fs-main/` sur GitHub Pages, Cloudflare Pages ou un hébergement statique équivalent.
+Le projet ne nécessite pas de build. Sur GitHub Pages, publier la branche `main` depuis la racine du dépôt (`/`). Aucun dossier `fs-main/` supplémentaire n’est nécessaire.
 
 Le fichier `CNAME` définit le domaine personnalisé : `usabazar.ci`.
