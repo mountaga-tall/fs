@@ -1,0 +1,16 @@
+{
+  "name": "F&S USA Bazar Corner",
+  "short_name": "F&S Bazar",
+  "lang": "fr-CI",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone"],
+  "background_color": "#fffdf7",
+  "theme_color": "#fffdf7",
+  "description": "F&S USA Bazar Corner — import USA et bonnes trouvailles à Abidjan.",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
