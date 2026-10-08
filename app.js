@@ -135,6 +135,24 @@
     window.clearTimeout(toastTimer);
     toastTimer = window.setTimeout(() => toast.classList.remove('is-visible'), 2400);
   };
+  const copyLink = async (value) => {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(value);
+      return;
+    }
+    const field = document.createElement('textarea');
+    field.value = value;
+    field.setAttribute('readonly', '');
+    field.style.position = 'fixed';
+    field.style.opacity = '0';
+    field.style.pointerEvents = 'none';
+    document.body.appendChild(field);
+    field.select();
+    const copied = document.execCommand('copy');
+    field.remove();
+    if (!copied) throw new Error('Copy unavailable');
+  };
+
   shareButton?.addEventListener('click', async () => {
     const shareData = { title: document.title, text: 'F&S USA Bazar Corner — Abidjan', url: window.location.href };
     try {
@@ -142,7 +160,7 @@
         await navigator.share(shareData);
         return;
       }
-      await navigator.clipboard.writeText(window.location.href);
+      await copyLink(window.location.href);
       showToast('Lien copié. Vous pouvez le partager où vous voulez.');
     } catch (error) {
       if (error?.name !== 'AbortError') showToast('Le partage est indisponible sur cet appareil.');
