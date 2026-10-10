@@ -24,6 +24,10 @@
   if (menuButton && mobileMenu) {
     menuButton.addEventListener('click', () => {
       const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+      if (!isOpen) {
+        const headerRect = menuButton.closest('.site-header')?.getBoundingClientRect();
+        if (headerRect) mobileMenu.style.top = `${headerRect.bottom + 8}px`;
+      }
       menuButton.setAttribute('aria-expanded', String(!isOpen));
       menuButton.setAttribute('aria-label', !isOpen ? 'Fermer le menu' : 'Ouvrir le menu');
       mobileMenu.classList.toggle('is-open', !isOpen);
@@ -137,8 +141,12 @@
   };
   const copyLink = async (value) => {
     if (navigator.clipboard?.writeText) {
-      await navigator.clipboard.writeText(value);
-      return;
+      try {
+        await navigator.clipboard.writeText(value);
+        return;
+      } catch (_) {
+        // Fall back for browsers or contexts that deny clipboard access.
+      }
     }
     const field = document.createElement('textarea');
     field.value = value;
