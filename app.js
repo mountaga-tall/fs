@@ -195,6 +195,7 @@
     installButton.type = 'button';
     installButton.dataset.pwaInstall = 'true';
     installButton.textContent = 'Installer F&S';
+    installButton.setAttribute('aria-label', 'Aide à l’installation de F&S USA Bazar Corner');
     document.body.appendChild(installButton);
   }
 
@@ -206,7 +207,7 @@
   installButton.addEventListener('click', async () => {
     if (!deferredInstallPrompt) {
       showToast(isAppleMobile
-        ? 'Pour installer : touchez Partager dans Safari, puis « Sur l’écran d’accueil ».'
+        ? 'Pour installer : touchez Partager dans Safari (ou votre navigateur), puis « Sur l’écran d’accueil ».'
         : 'Ouvrez le menu du navigateur et choisissez « Installer » ou « Ajouter à l’écran d’accueil » si disponible.', 6000);
       return;
     }
