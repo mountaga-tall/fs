@@ -48,3 +48,19 @@ main{position:relative}.hero{width:min(var(--container),90vw);margin:0 auto;min-
   .toast{bottom:calc(140px + env(safe-area-inset-bottom,0px))}
   html.is-offline body:before{bottom:calc(140px + env(safe-area-inset-bottom,0px))}
 }
+
+
+/* Authentic inline social-brand marks and WhatsApp actions. */
+.brand-icon{display:block;width:21px;height:21px;flex:0 0 auto}
+.header-wa,.mobile-wa,.floating-wa{gap:8px}
+.header-wa .brand-icon,.mobile-wa .brand-icon{width:18px;height:18px}
+.floating-wa .brand-icon{width:25px;height:25px}
+.social-row.social-brands{align-items:center;gap:10px}
+.social-row.social-brands a,.social-row.social-brands button{width:44px;height:44px;border-radius:14px;transition:transform .2s,box-shadow .2s}
+.social-row.social-brands a:hover,.social-row.social-brands button:hover{transform:translateY(-3px);box-shadow:0 8px 18px rgba(0,0,0,.15)}
+.social-row .social-facebook{background:#1877f2;color:#fff}
+.social-row .social-instagram{background:linear-gradient(135deg,#833ab4 0%,#fd1d1d 55%,#fcb045 100%);color:#fff}
+.social-row .social-tiktok{background:#111;color:#fff}
+.social-row .social-whatsapp{background:#25d366;color:#fff}
+.social-row.social-brands .brand-icon{width:22px;height:22px}
+@media(max-width:720px){.social-row.social-brands{gap:8px}.social-row.social-brands a,.social-row.social-brands button{width:42px;height:42px}}
