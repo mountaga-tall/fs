@@ -132,12 +132,12 @@
   const shareButton = $('[data-share]');
   const toast = $('#toast');
   let toastTimer;
-  const showToast = (message) => {
+  const showToast = (message, duration = 2400) => {
     if (!toast) return;
     toast.textContent = message;
     toast.classList.add('is-visible');
     window.clearTimeout(toastTimer);
-    toastTimer = window.setTimeout(() => toast.classList.remove('is-visible'), 2400);
+    toastTimer = window.setTimeout(() => toast.classList.remove('is-visible'), duration);
   };
   const copyLink = async (value) => {
     if (navigator.clipboard?.writeText) {
@@ -198,12 +198,16 @@
     document.body.appendChild(installButton);
   }
 
+  const isAppleMobile = /iphone|ipad|ipod/i.test(navigator.userAgent) ||
+    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const isStandalone = window.matchMedia?.('(display-mode: standalone)').matches || navigator.standalone === true;
+  installButton.hidden = Boolean(isStandalone);
+
   installButton.addEventListener('click', async () => {
     if (!deferredInstallPrompt) {
-      const isAppleMobile = /iphone|ipad|ipod/i.test(navigator.userAgent);
       showToast(isAppleMobile
         ? 'Pour installer : touchez Partager dans Safari, puis « Sur l’écran d’accueil ».'
-        : 'Ouvrez le menu du navigateur et choisissez « Installer » ou « Ajouter à l’écran d’accueil » si disponible.');
+        : 'Ouvrez le menu du navigateur et choisissez « Installer » ou « Ajouter à l’écran d’accueil » si disponible.', 6000);
       return;
     }
     try {
