@@ -180,7 +180,7 @@
     link.rel = 'noopener noreferrer';
   });
 
-  // Progressive Web App: register offline support + expose an install action when available.
+  // Progressive Web App: register offline support and guide installation across browsers.
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('./sw.js').catch(() => {});
@@ -188,31 +188,43 @@
   }
 
   let deferredInstallPrompt = null;
+  let installButton = $('[data-pwa-install]');
+  if (!installButton) {
+    installButton = document.createElement('button');
+    installButton.className = 'pwa-install';
+    installButton.type = 'button';
+    installButton.dataset.pwaInstall = 'true';
+    installButton.textContent = 'Installer F&S';
+    document.body.appendChild(installButton);
+  }
+
+  installButton.addEventListener('click', async () => {
+    if (!deferredInstallPrompt) {
+      const isAppleMobile = /iphone|ipad|ipod/i.test(navigator.userAgent);
+      showToast(isAppleMobile
+        ? 'Pour installer : touchez Partager dans Safari, puis « Sur l’écran d’accueil ».'
+        : 'Ouvrez le menu du navigateur et choisissez « Installer » ou « Ajouter à l’écran d’accueil » si disponible.');
+      return;
+    }
+    try {
+      deferredInstallPrompt.prompt();
+      const choice = await deferredInstallPrompt.userChoice;
+      if (choice?.outcome === 'accepted') installButton.hidden = true;
+    } catch (_) {
+      showToast('Installation indisponible pour le moment. Essayez depuis le menu du navigateur.');
+    } finally {
+      deferredInstallPrompt = null;
+    }
+  });
+
   window.addEventListener('beforeinstallprompt', (event) => {
     event.preventDefault();
     deferredInstallPrompt = event;
-    let install = $('[data-pwa-install]');
-    if (!install) {
-      install = document.createElement('button');
-      install.className = 'pwa-install';
-      install.type = 'button';
-      install.dataset.pwaInstall = 'true';
-      install.textContent = 'Installer l’app';
-      document.body.appendChild(install);
-    }
-    install.hidden = false;
-    install.onclick = async () => {
-      if (!deferredInstallPrompt) return;
-      deferredInstallPrompt.prompt();
-      await deferredInstallPrompt.userChoice;
-      deferredInstallPrompt = null;
-      install.hidden = true;
-    };
+    installButton.hidden = false;
   });
 
   window.addEventListener('appinstalled', () => {
-    const install = $('[data-pwa-install]');
-    if (install) install.hidden = true;
+    installButton.hidden = true;
     deferredInstallPrompt = null;
   });
 
