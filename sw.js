@@ -66,7 +66,7 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  const isCode = /\\.(?:css|js)$/i.test(url.pathname);
+  const isCode = /\.(?:css|js)$/i.test(url.pathname);
   if (isCode) {
     // Prefer fresh code online, but keep a cached copy for offline visits.
     event.respondWith((async () => {
