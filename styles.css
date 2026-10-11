@@ -62,5 +62,6 @@ main{position:relative}.hero{width:min(var(--container),90vw);margin:0 auto;min-
 .social-row .social-instagram{background:linear-gradient(135deg,#833ab4 0%,#fd1d1d 55%,#fcb045 100%);color:#fff}
 .social-row .social-tiktok{background:#111;color:#fff}
 .social-row .social-whatsapp{background:#25d366;color:#fff}
+.social-row .social-snapchat{background:#fffc00;color:#111}
 .social-row.social-brands .brand-icon{width:22px;height:22px}
 @media(max-width:720px){.social-row.social-brands{gap:8px}.social-row.social-brands a,.social-row.social-brands button{width:42px;height:42px}}
