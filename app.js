@@ -1,6 +1,110 @@
 (() => {
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+  // Bilingual interface: the switch is shared by all pages and persists between visits.
+  const languageDictionary = {
+    'Accueil':'Home','Boutique':'Shop','Arrivages':'New arrivals','À propos':'About us','Contact':'Contact',
+    'Ouvrir le menu':'Open menu','Fermer le menu':'Close menu','Écrire sur WhatsApp':'Message us on WhatsApp',
+    'F&S BAZAR CORNER · ABIDJAN':'F&S BAZAR CORNER · ABIDJAN',
+    'Des bons plans ':'Great USA finds ','import USA':'from the USA',' près de chez vous.':' near you.',
+    'Mode, chaussures, maison, électroménager, boissons et produits du quotidien. Une sélection qui change, un contact qui reste simple.':'Fashion, shoes, home goods, appliances, drinks and everyday essentials. A changing selection, with easy direct contact.',
+    'Voir la boutique':'Explore the shop','Voir les arrivages':'See new arrivals',
+    'Lun–sam 09h00–19h00 · Dim 10h00–17h00':'Mon–Sat 9 AM–7 PM · Sun 10 AM–5 PM',
+    'Points forts':'Why shop with us','Import USA':'USA imports','Des arrivages sélectionnés pour le style et le quotidien.':'Selected arrivals for style and everyday life.',
+    'Commande directe':'Direct orders','Un message WhatsApp suffit pour réserver ou demander un article.':'Just send us a WhatsApp message to reserve or ask about an item.',
+    'Proximité':'Close to you','Retrouvez-nous à Cocody-Angré Djibi, Rue L160.':'Visit us in Cocody-Angré Djibi, Rue L160.',
+    'La maison F&S':'The F&S experience','Une boutique.':'One shop.','Plusieurs univers.':'Many worlds.',
+    'Tout ce qui peut simplifier le quotidien, avec le plaisir de tomber sur la bonne trouvaille au bon moment.':'Everyday essentials and the joy of finding just the right thing at the right time.',
+    'Vêtements':'Clothing','Chaussures':'Shoes','Maison':'Home','Électroménager':'Appliances','Boissons':'Drinks','Rafraîchissements':'Refreshments','Les nouveautés d’abord':'New arrivals first',
+    'L’esprit F&S':'The F&S spirit','Notre rôle est simple : vous faire gagner du temps, vous proposer des nouveautés et rendre la commande facile.':'Our mission is simple: save you time, bring you new finds, and make ordering easy.',
+    'Découvrir F&S':'Discover F&S','À ne pas manquer':'Don’t miss out','Les favoris du moment.':'Current favourites.','Tout voir':'See all',
+    'Bonnes trouvailles':'Great finds','Des produits utiles, parfois inattendus, toujours à découvrir.':'Useful products, sometimes unexpected, always worth discovering.',
+    'Découvrir':'Discover','Besoin d’un article ?':'Looking for an item?','Besoin d\'un article ?':'Looking for an item?',
+    'Envoyez-nous un message.':'Send us a message.','Photo, nom du produit ou simple question : l’équipe F&S vous répond directement.':'Send a photo, product name or question — the F&S team will reply directly.',
+    'Nous trouver':'Find us','USA BAZAR Corner F&S':'USA BAZAR Corner F&S','Cocody-Angré Djibi · Rue L160, Abidjan':'Cocody-Angré Djibi · Rue L160, Abidjan','Itinéraire dans Google Maps':'Directions in Google Maps',
+    'Horaires':'Opening hours','Nos horaires':'Our opening hours','Horaires exceptionnels : 1er novembre (Toussaint) et 15 novembre 2026 (Journée nationale de la paix), 10h00 — 17h00.':'Special hours: 1 November (All Saints’ Day) and 15 November 2026 (National Peace Day), 10 AM–5 PM.',
+    'Horaires de la boutique':'Store opening hours','Partager':'Share','Faites passer le bon plan.':'Spread the word.','Partagez la boutique avec vos proches depuis votre téléphone.':'Share the shop with friends and family from your phone.',
+    'Retrouvez F&S USA Bazar Corner sur Facebook, Instagram, TikTok et Snapchat.':'Find F&S USA Bazar Corner on Facebook, Instagram, TikTok and Snapchat.',
+    'À propos de F&S':'About F&S','Une adresse simple':'Your place for','pour de ':'great ','bonnes trouvailles.':'finds.','F&S USA Bazar Corner sélectionne des marchandises diverses importées des USA et pensées pour la vie quotidienne à Abidjan.':'F&S USA Bazar Corner curates a range of products imported from the USA for everyday life in Abidjan.',
+    'Pratique':'Convenient','Un assortiment large, une recherche simple et une commande directe.':'A wide selection, easy browsing and direct ordering.',
+    'Curieux':'Discover','Les arrivages sont l’occasion de découvrir de nouveaux produits en permanence.':'New arrivals bring fresh products to discover all the time.',
+    'Proche':'Local','Une boutique locale avec un contact humain et un canal WhatsApp accessible.':'A local shop with personal service and easy WhatsApp contact.',
+    'Visitez-nous':'Visit us','Lundi–samedi : 09h00–19h00. Dimanche : 10h00–17h00.':'Monday–Saturday: 9 AM–7 PM. Sunday: 10 AM–5 PM.',
+    'Voir la boutique':'Explore the shop','Nous écrire':'Message us','Notre façon de travailler':'How we work','Une sélection qui évolue':'A changing selection',
+    'F&S mise sur des arrivages réguliers plutôt que sur un catalogue figé. C’est ce qui permet de faire de nouvelles trouvailles au fil du temps.':'F&S focuses on regular arrivals instead of a fixed catalogue, so there are always new finds to discover.',
+    'Un contact simple':'Easy to reach','Le site présente les univers et les nouveautés. Pour confirmer un stock, connaître un prix ou envoyer une photo, WhatsApp reste le canal le plus direct.':'Browse our collections and latest arrivals here. For stock checks, prices or sending a photo, WhatsApp is the quickest way to reach us.',
+    'Newsroom F&S':'F&S newsroom','Les nouveautés':'What’s new','avant tout le monde.':'before everyone else.','Les arrivages bougent. Gardez cette page en favori et écrivez-nous pour vérifier la disponibilité.':'Our arrivals change often. Bookmark this page and message us to check availability.',
+    'Nouveautés F&S USA Bazar Corner':'F&S USA Bazar Corner new arrivals','Mode & sneakers':'Fashion & sneakers','Les nouveautés à porter maintenant : hoodies, sneakers, essentiels et pièces coup de cœur.':'Fresh styles to wear now: hoodies, sneakers, essentials and standout pieces.',
+    'Voir la boutique ↗':'Explore the shop ↗','Maison':'Home','Canapés, rangement et équipements pratiques selon les stocks.':'Sofas, storage and practical home essentials, subject to availability.',
+    'Voir ↗':'View ↗','Quotidien':'Everyday essentials','Produits utiles, boissons et petites trouvailles.':'Useful products, drinks and little discoveries.',
+    'Le réflexe':'The next step','Vous avez vu un article ailleurs ?':'Seen an item somewhere else?','Envoyez-nous une photo ou son nom. Nous pouvons vous confirmer rapidement s’il est disponible chez F&S ou proposer une alternative.':'Send us a photo or its name. We can quickly check whether F&S has it or suggest an alternative.',
+    'Envoyer sur WhatsApp ↗':'Send via WhatsApp ↗','Questions fréquentes':'Frequently asked questions',
+    'Comment vérifier un article avant de me déplacer ?':'How can I check an item before visiting?','Envoyez simplement le nom ou une photo via WhatsApp. L’équipe pourra vérifier la disponibilité selon le stock du moment.':'Send the item name or a photo on WhatsApp. Our team can check current availability.',
+    'Les prix sont-ils fixes ?':'Are prices fixed?','Les prix affichés lorsqu’ils sont connus servent de repère. Pour les articles sur arrivage, demandez le prix et la disponibilité directement.':'Displayed prices are indicative when available. For new arrivals, ask us directly for the price and availability.',
+    'Puis-je demander une recherche particulière ?':'Can I request a specific item?','Oui. Décrivez l’article recherché ou envoyez une photo afin de voir si F&S peut vous proposer une disponibilité ou une alternative.':'Yes. Describe the item or send a photo and we’ll check availability or suggest an alternative.',
+    'On se parle':'Let’s talk','maintenant.':'right now.','Pour un prix, une disponibilité ou une demande particulière, le plus simple reste WhatsApp.':'For prices, availability or special requests, WhatsApp is the easiest way to reach us.',
+    'Adresse':'Address','Horaires exceptionnels':'Special hours','Besoin d’une réponse rapide ?':'Need a quick answer?','Envoyez simplement votre demande. Vous pouvez aussi joindre une photo de l’article recherché.':'Send us your question. You can also attach a photo of the item you’re looking for.',
+    'Ouvrir WhatsApp ↗':'Open WhatsApp ↗','Message prêt':'Message ready','Demander un article précis.':'Ask about a specific item.','Nom, catégorie, photo ou référence : plus votre demande est précise, plus la réponse est simple.':'Item name, category, photo or reference: the more detail you provide, the easier it is to help.',
+    'Préparer le message ↗':'Prepare message ↗',
+    'Rechercher un article':'Search for an item','Rechercher':'Search','Tous':'All','Tous les articles':'All items','Aucun article ne correspond à votre recherche. Essayez un autre mot ou contactez-nous sur WhatsApp.':'No items match your search. Try another term or contact us on WhatsApp.',
+    'Installer F&S':'Install F&S','Partager ou copier le lien':'Share or copy link','Autres options de partage':'More sharing options','Lien copié. Vous pouvez le partager où vous voulez.':'Link copied. You can share it anywhere.',
+    'Abidjan · Cocody-Angré Djibi · Rue L160':'Abidjan · Cocody-Angré Djibi · Rue L160'
+  };
+  const applyLanguage = (language) => {
+    const lang = language === 'en' ? 'en' : 'fr';
+    document.documentElement.lang = lang;
+    const switches = $('.language-switch');
+    switches.forEach((switcher) => {
+      switcher.dataset.current = lang;
+      $('[data-language]', switcher).forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.language === lang)));
+    });
+    const textNodes = [];
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    while (walker.nextNode()) textNodes.push(walker.currentNode);
+    textNodes.forEach((node) => {
+      if (!node.__frOriginal) node.__frOriginal = node.nodeValue;
+      const original = node.__frOriginal;
+      const key = original.trim();
+      if (!key) return;
+      if (lang === 'fr') node.nodeValue = original;
+      else if (Object.prototype.hasOwnProperty.call(languageDictionary, key)) {
+        node.nodeValue = original.replace(key, languageDictionary[key]);
+      }
+    });
+    const attributeTranslations = {
+      'aria-label': {'Navigation principale':'Main navigation','Navigation mobile':'Mobile navigation','Ouvrir le menu':'Open menu','Fermer le menu':'Close menu','Aller au contenu':'Skip to content','Ouvrir WhatsApp':'Open WhatsApp','Retour en haut':'Back to top','Partager ou copier le lien':'Share or copy link'},
+      'title': {'Autres options de partage':'More sharing options'},
+      'alt': {'Sélection de produits F&S USA Bazar Corner':'F&S USA Bazar Corner product selection','Nouveautés F&S USA Bazar Corner':'F&S USA Bazar Corner new arrivals','USA BAZAR Corner F&S':'USA BAZAR Corner F&S'},
+      'content': {'Import USA, mode, maison, électroménager et bonnes affaires à Cocody-Angré Djibi, Abidjan.':'USA imports, fashion, home goods, appliances and great finds in Cocody-Angré Djibi, Abidjan.'}
+    };
+    $('meta, [aria-label], [title], img').forEach((el) => {
+      ['aria-label','title','alt','content'].forEach((attr) => {
+        const val = el.getAttribute(attr);
+        if (!val) return;
+        if (!el.dataset['fr'+attr]) el.dataset['fr'+attr] = val;
+        const fr = el.dataset['fr'+attr];
+        if (lang === 'fr') el.setAttribute(attr, fr);
+        else if (attributeTranslations[attr] && attributeTranslations[attr][fr]) el.setAttribute(attr, attributeTranslations[attr][fr]);
+      });
+    });
+    $('a[target="_blank"]').forEach((link) => { link.rel = 'noopener noreferrer'; });
+    const install = $('[data-pwa-install]');
+    if (install) install.textContent = lang === 'en' ? 'Install F&S' : 'Installer F&S';
+    const toast = $('#toast');
+    if (toast && lang === 'en' && toast.textContent === 'Le partage est indisponible sur cet appareil.') toast.textContent = 'Sharing is unavailable on this device.';
+  };
+  $('.language-switch [data-language]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const lang = button.dataset.language;
+      applyLanguage(lang);
+      try { localStorage.setItem('fs-language', lang); } catch (_) {}
+    });
+  });
+  let preferredLanguage = 'fr';
+  try { preferredLanguage = localStorage.getItem('fs-language') || 'fr'; } catch (_) {}
+  applyLanguage(preferredLanguage);
+
+
   const waNumber = '2250720602951';
   const waBase = `https://wa.me/${waNumber}`;
 
