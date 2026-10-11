@@ -1,4 +1,4 @@
-const CACHE = "fs-bazar-v20261010-pwa3";
+const CACHE = "fs-bazar-v20261011-pwa4";
 const APP_SHELL = [
   "/",
   "/index.html",
@@ -13,7 +13,8 @@ const APP_SHELL = [
   "/icon-192.png",
   "/icon-512.png",
   "/logo.webp",
-  "/banner.webp"
+  "/banner.webp",
+  "/rectocv.png"
 ];
 
 self.addEventListener("install", (event) => {
