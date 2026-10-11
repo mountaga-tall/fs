@@ -6,7 +6,7 @@
     'Accueil':'Home','Boutique':'Shop','Arrivages':'New arrivals','À propos':'About us','Contact':'Contact',
     'Ouvrir le menu':'Open menu','Fermer le menu':'Close menu','Écrire sur WhatsApp':'Message us on WhatsApp',
     'F&S BAZAR CORNER · ABIDJAN':'F&S BAZAR CORNER · ABIDJAN',
-    'Des bons plans ':'Great USA finds ','import USA':'from the USA',' près de chez vous.':' near you.',
+    'Des bons plans':'Great USA finds','import USA':'from the USA','près de chez vous.':'near you.',
     'Mode, chaussures, maison, électroménager, boissons et produits du quotidien. Une sélection qui change, un contact qui reste simple.':'Fashion, shoes, home goods, appliances, drinks and everyday essentials. A changing selection, with easy direct contact.',
     'Voir la boutique':'Explore the shop','Voir les arrivages':'See new arrivals',
     'Lun–sam 09h00–19h00 · Dim 10h00–17h00':'Mon–Sat 9 AM–7 PM · Sun 10 AM–5 PM',
@@ -25,7 +25,7 @@
     'Horaires':'Opening hours','Nos horaires':'Our opening hours','Horaires exceptionnels : 1er novembre (Toussaint) et 15 novembre 2026 (Journée nationale de la paix), 10h00 — 17h00.':'Special hours: 1 November (All Saints’ Day) and 15 November 2026 (National Peace Day), 10 AM–5 PM.',
     'Horaires de la boutique':'Store opening hours','Partager':'Share','Faites passer le bon plan.':'Spread the word.','Partagez la boutique avec vos proches depuis votre téléphone.':'Share the shop with friends and family from your phone.',
     'Retrouvez F&S USA Bazar Corner sur Facebook, Instagram, TikTok et Snapchat.':'Find F&S USA Bazar Corner on Facebook, Instagram, TikTok and Snapchat.',
-    'À propos de F&S':'About F&S','Une adresse simple':'Your place for','pour de ':'great ','bonnes trouvailles.':'finds.','F&S USA Bazar Corner sélectionne des marchandises diverses importées des USA et pensées pour la vie quotidienne à Abidjan.':'F&S USA Bazar Corner curates a range of products imported from the USA for everyday life in Abidjan.',
+    'À propos de F&S':'About F&S','Une adresse simple':'Your place for','pour de':'great','bonnes trouvailles.':'finds.','F&S USA Bazar Corner sélectionne des marchandises diverses importées des USA et pensées pour la vie quotidienne à Abidjan.':'F&S USA Bazar Corner curates a range of products imported from the USA for everyday life in Abidjan.',
     'Pratique':'Convenient','Un assortiment large, une recherche simple et une commande directe.':'A wide selection, easy browsing and direct ordering.',
     'Curieux':'Discover','Les arrivages sont l’occasion de découvrir de nouveaux produits en permanence.':'New arrivals bring fresh products to discover all the time.',
     'Proche':'Local','Une boutique locale avec un contact humain et un canal WhatsApp accessible.':'A local shop with personal service and easy WhatsApp contact.',
@@ -97,10 +97,11 @@
       }
     });
     const attributeTranslations = {
+      'placeholder': {'Rechercher un produit…':'Search for a product…','Rechercher':'Search'},
       'aria-label': {'Navigation principale':'Main navigation','Navigation mobile':'Mobile navigation','Ouvrir le menu':'Open menu','Fermer le menu':'Close menu','Aller au contenu':'Skip to content','Ouvrir WhatsApp':'Open WhatsApp','Retour en haut':'Back to top','Partager ou copier le lien':'Share or copy link'},
       'title': {'Autres options de partage':'More sharing options'},
       'alt': {'Sélection de produits F&S USA Bazar Corner':'F&S USA Bazar Corner product selection','Nouveautés F&S USA Bazar Corner':'F&S USA Bazar Corner new arrivals','USA BAZAR Corner F&S':'USA BAZAR Corner F&S'},
-      'content': {'Import USA, mode, maison, électroménager et bonnes affaires à Cocody-Angré Djibi, Abidjan.':'USA imports, fashion, home goods, appliances and great finds in Cocody-Angré Djibi, Abidjan.'}
+      'content': {'Import USA, mode, maison, électroménager et bonnes affaires à Cocody-Angré Djibi, Abidjan.':'USA imports, fashion, home goods, appliances and great finds in Cocody-Angré Djibi, Abidjan.','Les arrivages F&S USA Bazar Corner à Abidjan : nouveautés, mode, maison, quotidien et bonnes trouvailles.':'F&S USA Bazar Corner arrivals in Abidjan: new finds, fashion, home goods and everyday essentials.','À propos de F&S USA Bazar Corner, boutique de marchandises diverses importées des USA à Cocody-Angré Djibi, Abidjan.':'About F&S USA Bazar Corner, a shop for products imported from the USA in Cocody-Angré Djibi, Abidjan.','Une réponse rapide par WhatsApp ou retrouvez-nous à Cocody-Angré Djibi.':'Get a quick response on WhatsApp or visit us in Cocody-Angré Djibi.','Import USA, mode, maison, électroménager et bonnes affaires à Cocody-Angré Djibi, Abidjan.':'USA imports, fashion, home goods, appliances and great finds in Cocody-Angré Djibi, Abidjan.'}
     };
     $('meta, [aria-label], [title], img').forEach((el) => {
       ['aria-label','title','alt','content'].forEach((attr) => {
@@ -115,6 +116,10 @@
     $('a[target="_blank"]').forEach((link) => { link.rel = 'noopener noreferrer'; });
     const install = $('[data-pwa-install]');
     if (install) install.textContent = lang === 'en' ? 'Install F&S' : 'Installer F&S';
+    const titleTranslations = {'F&S USA Bazar Corner — Import USA à Abidjan':'F&S USA Bazar Corner — USA Imports in Abidjan','À propos — F&S USA Bazar Corner':'About — F&S USA Bazar Corner','Arrivages — F&S USA Bazar Corner':'New arrivals — F&S USA Bazar Corner','Contact — F&S USA Bazar Corner':'Contact — F&S USA Bazar Corner'};
+    const currentTitle = document.title;
+    if (!document.documentElement.dataset.frTitle) document.documentElement.dataset.frTitle = currentTitle;
+    document.title = lang === 'fr' ? document.documentElement.dataset.frTitle : (titleTranslations[document.documentElement.dataset.frTitle] || document.documentElement.dataset.frTitle);
     const toast = $('#toast');
     if (toast && lang === 'en' && toast.textContent === 'Le partage est indisponible sur cet appareil.') toast.textContent = 'Sharing is unavailable on this device.';
   };
