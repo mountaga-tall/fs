@@ -48,7 +48,32 @@
     'Préparer le message ↗':'Prepare message ↗',
     'Rechercher un article':'Search for an item','Rechercher':'Search','Tous':'All','Tous les articles':'All items','Aucun article ne correspond à votre recherche. Essayez un autre mot ou contactez-nous sur WhatsApp.':'No items match your search. Try another term or contact us on WhatsApp.',
     'Installer F&S':'Install F&S','Partager ou copier le lien':'Share or copy link','Autres options de partage':'More sharing options','Lien copié. Vous pouvez le partager où vous voulez.':'Link copied. You can share it anywhere.',
-    'Abidjan · Cocody-Angré Djibi · Rue L160':'Abidjan · Cocody-Angré Djibi · Rue L160'
+    'Looks & essentiels':'Looks & essentials','Sport & lifestyle':'Sports & lifestyle','Confort & déco':'Comfort & décor','Pratique au quotidien':'Everyday convenience',
+    'La boutique':'The shop','Les essentiels.':'Everyday essentials.','Les trouvailles.':'Great finds.','Une sélection multi-catégories qui évolue au fil des arrivages. Recherchez un produit ou filtrez par univers.':'A multi-category selection that evolves with each arrival. Search for a product or filter by category.',
+    'Filtrer les produits':'Filter products','Rechercher un produit':'Search for a product','Rechercher un produit…':'Search for a product…','6 articles affichés':'6 items shown',
+    'Hoodies & sweats':'Hoodies & sweatshirts','Pièces casual pour tous les jours.':'Casual pieces for every day.','À partir de 12 000 FCFA':'From CFA 12,000','Commander ↗':'Order ↗',
+    'Sneakers lifestyle':'Lifestyle sneakers','Sport, ville et décontracté.':'Sporty, urban and casual.','À partir de 18 000 FCFA':'From CFA 18,000',
+    'Meubles':'Furniture','Salon & déco':'Living room & décor','Canapés, tables et pièces pour la maison.':'Sofas, tables and home furnishings.','Sur arrivage':'Subject to arrival','Demander ↗':'Ask us ↗',
+    'Électroménager':'Home appliances','Appareils maison':'Home appliances','Petits et grands équipements selon arrivage.':'Small and large appliances, subject to arrivals.',
+    'Boissons & rafraîchissements':'Drinks & refreshments','Maison, bureau et événements.':'For home, office and events.','Produits divers':'Miscellaneous products','Bonnes trouvailles':'Great finds','Accessoires, rangement, utilitaire et plus.':'Accessories, storage, useful essentials and more.',
+    'Selon arrivage':'Subject to arrivals','Voir stock ↗':'Check stock ↗','Voir les arrivages ↗':'See new arrivals ↗',
+    'Une boutique locale':'A local shop','Les arrivages bougent.':'New arrivals change often.','Retrouvez-nous à Angré Djibi.':'Find us in Angré Djibi.','USA BAZAR CORNER (F&S) · Abidjan, Cocody-Angré Djibi.':'USA BAZAR CORNER (F&S) · Abidjan, Cocody-Angré Djibi.',
+    'Le site présente les univers et les nouveautés.':'The website showcases our categories and latest arrivals.',
+    'Nos valeurs':'Our values','F&S USA Bazar Corner':'F&S USA Bazar Corner','F&S USA Bazar Corner — Accueil':'F&S USA Bazar Corner — Home',
+    'Arrivages réguliers':'Regular new arrivals','Prix attractifs':'Great prices','Livraison à Abidjan':'Delivery in Abidjan',
+    'Ouvrir dans Maps':'Open in Maps','Itinéraire':'Directions','Partager sur WhatsApp':'Share on WhatsApp',
+    'À partir de ':'From ','Sur arrivage':'Subject to arrivals','Voir la sélection ↗':'Explore the selection ↗',
+    'Des pièces simples à porter, des modèles qui attirent l’œil.':'Easy-to-wear pieces and eye-catching styles.','Canapés, appareils et accessoires selon les arrivages.':'Sofas, appliances and accessories depending on arrivals.',
+    'F&S USA Bazar Corner — Import USA à Abidjan':'F&S USA Bazar Corner — USA Imports in Abidjan',
+    'À propos — F&S USA Bazar Corner':'About — F&S USA Bazar Corner','Arrivages — F&S USA Bazar Corner':'New arrivals — F&S USA Bazar Corner','Contact — F&S USA Bazar Corner':'Contact — F&S USA Bazar Corner',
+    'Import USA, bonnes trouvailles et commande directe à Abidjan.':'USA imports, great finds and direct ordering in Abidjan.',
+    'Les nouveautés avant tout le monde.':'The latest finds before everyone else.','Une adresse simple pour de bonnes trouvailles.':'Your place for great finds.',
+    'Contactez F&S USA Bazar Corner à Abidjan pour un prix, une disponibilité, une commande ou une recherche particulière.':'Contact F&S USA Bazar Corner in Abidjan for prices, availability, orders or special requests.',
+    'Pour confirmer un stock, connaître un prix ou envoyer une photo, WhatsApp reste le canal le plus direct.':'To confirm stock, ask about a price or send a photo, WhatsApp is the quickest way to reach us.',
+    'Installer F&S':'Install F&S','Mode hors ligne — les pages déjà visitées restent accessibles':'Offline mode — previously visited pages remain available',
+    'Partagez la boutique avec vos proches depuis votre téléphone.':'Share the shop with friends and family from your phone.',
+    'Lun–sam : 09h00 — 19h00':'Mon–Sat: 9 AM–7 PM','Dim : 10h00 — 17h00':'Sun: 10 AM–5 PM',
+    '01':'01','02':'02','03':'03'
   };
   const applyLanguage = (language) => {
     const lang = language === 'en' ? 'en' : 'fr';
@@ -216,7 +241,7 @@
     });
 
     filterButtons.forEach((button) => button.classList.toggle('active', button.dataset.filter === activeFilter));
-    if (productCount) productCount.textContent = `${visible} article${visible > 1 ? 's' : ''} affiché${visible > 1 ? 's' : ''}`;
+    if (productCount) productCount.textContent = document.documentElement.lang === 'en' ? `${visible} item${visible !== 1 ? 's' : ''} shown` : `${visible} article${visible > 1 ? 's' : ''} affiché${visible > 1 ? 's' : ''}`;
     if (emptyState) emptyState.style.display = visible ? 'none' : 'block';
   };
 
@@ -298,7 +323,7 @@
     installButton.className = 'pwa-install';
     installButton.type = 'button';
     installButton.dataset.pwaInstall = 'true';
-    installButton.textContent = 'Installer F&S';
+    installButton.textContent = document.documentElement.lang === 'en' ? 'Install F&S' : 'Installer F&S';
     installButton.setAttribute('aria-label', 'Aide à l’installation de F&S USA Bazar Corner');
     document.body.appendChild(installButton);
   }
