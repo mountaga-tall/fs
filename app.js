@@ -107,8 +107,10 @@
       ['aria-label','title','alt','content'].forEach((attr) => {
         const val = el.getAttribute(attr);
         if (!val) return;
-        if (!el.dataset['fr'+attr]) el.dataset['fr'+attr] = val;
-        const fr = el.dataset['fr'+attr];
+        // Keep original French attributes on the element itself; data-* keys cannot safely mirror names such as aria-label.
+        if (!el.__frAttributes) el.__frAttributes = {};
+        if (!Object.prototype.hasOwnProperty.call(el.__frAttributes, attr)) el.__frAttributes[attr] = val;
+        const fr = el.__frAttributes[attr];
         if (lang === 'fr') el.setAttribute(attr, fr);
         else if (attributeTranslations[attr] && attributeTranslations[attr][fr]) el.setAttribute(attr, attributeTranslations[attr][fr]);
       });
