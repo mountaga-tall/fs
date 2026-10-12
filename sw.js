@@ -1,4 +1,4 @@
-const CACHE = "fs-bazar-v20261011-pwa5";
+const CACHE = "fs-bazar-v20261011-pwa6";
 const APP_SHELL = [
   "/",
   "/index.html",
