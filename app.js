@@ -78,10 +78,10 @@
   const applyLanguage = (language) => {
     const lang = language === 'en' ? 'en' : 'fr';
     document.documentElement.lang = lang;
-    const switches = $('.language-switch');
+    const switches = $$('.language-switch');
     switches.forEach((switcher) => {
       switcher.dataset.current = lang;
-      $('[data-language]', switcher).forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.language === lang)));
+      $$('[data-language]', switcher).forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.language === lang)));
     });
     const textNodes = [];
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
@@ -103,7 +103,7 @@
       'alt': {'Sélection de produits F&S USA Bazar Corner':'F&S USA Bazar Corner product selection','Nouveautés F&S USA Bazar Corner':'F&S USA Bazar Corner new arrivals','USA BAZAR Corner F&S':'USA BAZAR Corner F&S'},
       'content': {'Import USA, mode, maison, électroménager et bonnes affaires à Cocody-Angré Djibi, Abidjan.':'USA imports, fashion, home goods, appliances and great finds in Cocody-Angré Djibi, Abidjan.','Les arrivages F&S USA Bazar Corner à Abidjan : nouveautés, mode, maison, quotidien et bonnes trouvailles.':'F&S USA Bazar Corner arrivals in Abidjan: new finds, fashion, home goods and everyday essentials.','À propos de F&S USA Bazar Corner, boutique de marchandises diverses importées des USA à Cocody-Angré Djibi, Abidjan.':'About F&S USA Bazar Corner, a shop for products imported from the USA in Cocody-Angré Djibi, Abidjan.','Une réponse rapide par WhatsApp ou retrouvez-nous à Cocody-Angré Djibi.':'Get a quick response on WhatsApp or visit us in Cocody-Angré Djibi.','Import USA, mode, maison, électroménager et bonnes affaires à Cocody-Angré Djibi, Abidjan.':'USA imports, fashion, home goods, appliances and great finds in Cocody-Angré Djibi, Abidjan.'}
     };
-    $('meta, [aria-label], [title], img').forEach((el) => {
+    $$('meta, [aria-label], [title], img').forEach((el) => {
       ['aria-label','title','alt','content'].forEach((attr) => {
         const val = el.getAttribute(attr);
         if (!val) return;
@@ -113,7 +113,7 @@
         else if (attributeTranslations[attr] && attributeTranslations[attr][fr]) el.setAttribute(attr, attributeTranslations[attr][fr]);
       });
     });
-    $('a[target="_blank"]').forEach((link) => { link.rel = 'noopener noreferrer'; });
+    $$('a[target="_blank"]').forEach((link) => { link.rel = 'noopener noreferrer'; });
     const install = $('[data-pwa-install]');
     if (install) install.textContent = lang === 'en' ? 'Install F&S' : 'Installer F&S';
     const titleTranslations = {'F&S USA Bazar Corner — Import USA à Abidjan':'F&S USA Bazar Corner — USA Imports in Abidjan','À propos — F&S USA Bazar Corner':'About — F&S USA Bazar Corner','Arrivages — F&S USA Bazar Corner':'New arrivals — F&S USA Bazar Corner','Contact — F&S USA Bazar Corner':'Contact — F&S USA Bazar Corner'};
@@ -123,7 +123,7 @@
     const toast = $('#toast');
     if (toast && lang === 'en' && toast.textContent === 'Le partage est indisponible sur cet appareil.') toast.textContent = 'Sharing is unavailable on this device.';
   };
-  $('.language-switch [data-language]').forEach((button) => {
+  $$('.language-switch [data-language]').forEach((button) => {
     button.addEventListener('click', () => {
       const lang = button.dataset.language;
       applyLanguage(lang);
@@ -141,7 +141,7 @@
   const openWhatsApp = (message) => `${waBase}?text=${encodeURIComponent(message)}`;
 
   // Add contextual WhatsApp messages to product buttons.
-  $$('.product-cta[data-product]').forEach((button) => {
+  $$$('.product-cta[data-product]').forEach((button) => {
     button.href = openWhatsApp(`Bonjour F&S USA Bazar Corner, je suis intéressé(e) par : ${button.dataset.product}. Pouvez-vous me confirmer la disponibilité et le prix ?`);
   });
 
@@ -209,6 +209,8 @@
       });
     }, { threshold: .12 });
     reveals.forEach((el) => observer.observe(el));
+    // Only hide reveal elements after the observer is successfully initialized.
+    document.documentElement.classList.add('js-enabled');
   } else {
     reveals.forEach((el) => el.classList.add('is-visible'));
   }
@@ -310,7 +312,7 @@
   });
 
   // Graceful external link handling for WhatsApp / Maps.
-  $$('a[target="_blank"]').forEach((link) => {
+  $$$('a[target="_blank"]').forEach((link) => {
     link.rel = 'noopener noreferrer';
   });
 
@@ -376,5 +378,5 @@
   refreshConnectivity();
 
   // Update the displayed year automatically.
-  $$('.js-year').forEach((el) => { el.textContent = new Date().getFullYear(); });
+  $$$('.js-year').forEach((el) => { el.textContent = new Date().getFullYear(); });
 })();
